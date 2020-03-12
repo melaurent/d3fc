@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Webgl</title>
+    <meta name="description" content="A collection of components that make it easy to build interactive charts with D3.">
+
+    <script src="https://d3fc.io/lib/browser.js"></script>
+    <script src="https://d3fc.io/lib/custom-event-polyfill.js"></script>
+    <script src="https://d3fc.io/lib/document-register-element.js"></script>
+    <script src="https://d3fc.io/lib/d3.min.js"></script>
+    <script src="https://d3fc.io/lib/jquery.min.js"></script>
+    <script src="https://d3fc.io/lib/bootstrap.min.js"></script>
+    <script src="https://d3fc.io/lib/d3fc.min.js"></script>
+    <script src="https://d3fc.io/lib/d3-legend.min.js"></script>
+    <link rel="icon" type="image/png" href="https://d3fc.io/images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://d3fc.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://d3fc.io/images/favicon-96x96.png" sizes="96x96">
+    <link rel="stylesheet" href="https://d3fc.io/styles.css" />
+    <link rel="canonical" href="https://d3fc.io/api/webgl-api.html" />
+  </head>
+  <body>
+    <div class="content">
+
+      <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="https://d3fc.io/"><img class="navbar-logo" alt="d3fc" src="https://d3fc.io/images/logo.svg" /></a>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="navbar-collapse collapse">
+              <div class="floating-nav inverted">
+                <ul class="nav navbar-nav">
+                  <li class=""><a href="https://d3fc.io/introduction/getting-started.html">Documentation</a></li>
+                  <li class="active">
+                    <a href="https://d3fc.io/api/annotation-api.html">API</a>
+                      <ul class="sub-nav">
+                          <li class="sub-nav-item">
+                              <a href="/api/annotation-api.html">Annotation</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/axis-api.html">Axis</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/brush-api.html">Brush</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/chart-api.html">Chart</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/data-join-api.html">Data Join</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/discontinuous-scale-api.html">Discontinuous Scale</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/element-api.html">Element</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/extent-api.html">Extent</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/financial-feed-api.html">Financial Feed</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/group-api.html">Group</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/label-layout-api.html">Label Layout</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/pointer-api.html">Pointer</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/random-data-api.html">Random Data</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/rebind-api.html">Rebind</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/sample-api.html">Sample</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/series-api.html">Series</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/shape-api.html">Shape</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <a href="/api/technical-indicator-api.html">Technical Indicator</a>
+                          </li>
+                          <li class="sub-nav-item">
+                              <span class="active">Webgl</span>
+                          </li>
+                      </ul>
+                  </li>
+                  <li><a href="https://d3fc.io/examples/">Examples</a></li>
+                  <li><a href="https://github.com/d3fc/d3fc">GitHub</a></li>
+                  <li class="separator"></li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </nav>
+
+      
+<div class="container content">
+  <div class="col-sm-9">
+    <!-- LEVEL 1 -->
+      <div class="section">
+        <h1>
+          d3fc-webgl
+            <a class="btn btn-default gh" href="https://github.com/d3fc/d3fc/tree/master/packages/d3fc-webgl">View on GitHub</a>
+            <a class="btn btn-default unpkg" href="https://unpkg.com/@d3fc/d3fc-webgl/build/d3fc-webgl.min.js">View on unpkg</a>
+        </h1>
+<p>A collection of very low-level components for rendering with WebGL. See other packages (e.g. <a href="https://github.com/d3fc/d3fc/tree/master/packages/d3fc-series#d3fc-series">d3fc-series</a>) for higher-level components which make use of these low-level components.</p>
+<p><a href="https://github.com/d3fc/d3fc">Main D3FC package</a></p>
+        <!-- LEVEL 2 -->
+          <div class="block">
+            <h2 class="header">
+API Reference
+            </h2>
+<ul>
+<li><a href="#series">Series</a><ul>
+<li><a href="#common-properties">Common Properties</a></li>
+<li><a href="#area">Area</a></li>
+<li><a href="#bar">Bar</a></li>
+<li><a href="#boxplot">BoxPlot</a></li>
+<li><a href="#candlestick">Candlestick</a></li>
+<li><a href="#errorbar">ErrorBar</a></li>
+<li><a href="#line">Line</a></li>
+<li><a href="#ohlc">Ohlc</a></li>
+<li><a href="#point">Point</a></li>
+</ul>
+</li>
+<li><a href="#buffers">Buffers</a><ul>
+<li><a href="#attribute-buffer-builders">Attribute Buffer Builders</a><ul>
+<li><a href="#element-attribute">Element Attribute</a></li>
+<li><a href="#adjacent-element-attribute">Adjacent Element Attribute</a></li>
+<li><a href="#vertex-attribute">Vertex Attribute</a></li>
+<li><a href="#base-attribute">Base Attribute</a></li>
+</ul>
+</li>
+<li><a href="#uniform-builder">Uniform Builder</a></li>
+<li><a href="#buffer-builder">Buffer Builder</a></li>
+<li><a href="#element-indices">Element Indices</a></li>
+<li><a href="#types">Types</a></li>
+</ul>
+</li>
+<li><a href="#scales">Scales</a><ul>
+<li><a href="#linear">Linear</a></li>
+<li><a href="#log">Log</a></li>
+<li><a href="#pow">Pow</a></li>
+<li><a href="#scale-mapper">Scale Mapper</a></li>
+</ul>
+</li>
+<li><a href="#shader-builder">Shader Builder</a><ul>
+<li><a href="#shader-naming-convention">Shader Naming Convention</a></li>
+</ul>
+</li>
+<li><a href="#program-builder">Program Builder</a></li>
+<li><a href="#symbol-mapper">Symbol Mapper</a></li>
+<li><a href="#fill-color">Fill Color</a></li>
+<li><a href="#stroke-color">Stroke Color</a></li>
+</ul>
+<p>This package contains the components needed to render a standard or custom series types with WebGL. </p>
+            <!-- LEVEL 3 -->
+              <div class="block">
+                <h3 class="header">
+                  <a id="series" href="#series" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Series
+                </h3>
+<p>The series share a common API with a typical configuration requiring x and y WebGL scales together with a number of attribute buffers.</p>
+<p>Some of the series make use of <code>next</code>/<code>previous</code> attributes. These are needed in situations where the current element requires information about adjacent elements in order to be drawn correctly. For example when drawing a line we need to know information about adjacent data points so that we can draw the connection between them correctly.</p>
+<p>Currently only the <a href="#line">line</a> and <a href="#point">point</a> series are able to render different orientations (<code>horizontal</code> and <code>vertical</code>), all other charts render as a <code>vertical</code> chart.</p>
+<h4 id="common-properties">Common Properties</h4>
+<p>A few properties are shared across all of the series.</p>
+<p><a name="series_xScale" href="#series_xScale">#</a> <em>series</em>.<strong>xScale</strong>(<em>scale</em>)
+<a name="series_yScale" href="#series_yScale">#</a> <em>series</em>.<strong>yScale</strong>(<em>scale</em>)</p>
+<p>If <em>scale</em> is specified, sets the scale and returns this series. If <em>scale</em> is not specified, returns the current scale.</p>
+<p>N.B. scales are Webgl scales not D3 scales. These can be created <a href="#scales">manually</a> or generated from D3 scales using the <a href="#scale-mapper">webglScaleMapper</a>.</p>
+<p><a name="series_decorate" href="#series_decorate">#</a> <em>series</em>.<strong>decorate</strong>(<em>decorateFunc</em>)</p>
+<p>If <em>decorateFunc</em> is specified, sets decorate to the given function and returns this series. If <em>decorateFunc</em> is not specified, returns the current decorate function.</p>
+<p>The function is called immediately prior to the underlying WebGL calls. It is passed a single argument which is an instance of <a href="#program-builder"><code>webglProgramBuilder</code></a>. This allows users of the components to modify the shaders, as well as change or pass in additional attribute/uniform values.</p>
+<p><a name="series_context" href="#series_context">#</a> <em>series</em>.<strong>context</strong>(<em>WebGLRenderingContext</em>)</p>
+<p>If <em>WebGLRenderingContext</em> is specified, sets the rendering context and returns this series. If <em>WebGLRenderingContext</em> is not specified, returns the current rendering context.</p>
+<p>This property is rebound from <a href="#program-builder">webglProgramBuilder.context</a>.</p>
+<p><a name="series_definedAttribute" href="#series_definedAttribute">#</a> <em>series</em>.<strong>definedAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the defined attribute and returns this series. If <em>attribute</em> is not specified, returns the current defined attribute.</p>
+<p>The attribute values should either be <code>1</code> (to indicate the data point is defined) or <code>0</code> (to indicate the data point is not defined).</p>
+<h4 id="area">Area</h4>
+<p><a name="webglSeriesArea" href="webglSeriesArea">#</a> fc.<strong>webglSeriesArea</strong>()</p>
+<p>Used to construct a new WebGL Area series.</p>
+<p><a name="webglSeriesArea_crossValueAttribute" href="#webglSeriesArea_crossValueAttribute">#</a> <em>webglSeriesArea</em>.<strong>crossValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross value attribute.</p>
+<p><a name="webglSeriesArea_crossPreviousValueAttribute" href="#webglSeriesArea_crossPreviousValueAttribute">#</a> <em>webglSeriesArea</em>.<strong>crossPreviousValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross previous value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross previous value attribute.</p>
+<p><a name="webglSeriesArea_mainValueAttribute" href="#webglSeriesArea_mainValueAttribute">#</a> <em>webglSeriesArea</em>.<strong>mainValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the main value attribute and returns this series. If <em>attribute</em> is not specified, returns the current main value attribute.</p>
+<p><a name="webglSeriesArea_mainPreviousValueAttribute" href="#webglSeriesArea_mainPreviousValueAttribute">#</a> <em>webglSeriesArea</em>.<strong>mainPreviousValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the main previous value attribute and returns this series. If <em>attribute</em> is not specified, returns the current main previous value attribute.</p>
+<p><a name="webglSeriesArea_baseValueAttribute" href="#webglSeriesArea_baseValueAttribute">#</a> <em>webglSeriesArea</em>.<strong>baseValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the base value attribute and returns this series. If <em>attribute</em> is not specified, returns the current base value attribute.</p>
+<p><a name="webglSeriesArea_basePreviousValueAttribute" href="#webglSeriesArea_basePreviousValueAttribute">#</a> <em>webglSeriesArea</em>.<strong>basePreviousValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the base previous value attribute and returns this series. If <em>attribute</em> is not specified, returns the current base previous value attribute.</p>
+<p><a name="webglSeriesArea_definedNextAttribute" href="#webglSeriesArea_definedNextAttribute">#</a> <em>webglSeriesArea</em>.<strong>definedNextAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the defined next attribute and returns this series. If <em>attribute</em> is not specified, returns the current defined next attribute.</p>
+<p>The attribute values should either be <code>1</code> (to indicate the data point is defined) or <code>0</code> (to indicate the data point is not defined).</p>
+<h4 id="bar">Bar</h4>
+<p><a name="webglSeriesBar" href="#webglSeriesBar">#</a> fc.<strong>webglSeriesBar</strong>()</p>
+<p>Used to construct a new WebGL Bar series.</p>
+<p><a name="webglSeriesBar_crossValueAttribute" href="#webglSeriesBar_crossValueAttribute">#</a> <em>webglSeriesBar</em>.<strong>crossValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross value attribute.</p>
+<p><a name="webglSeriesBar_mainValueAttribute" href="#webglSeriesBar_mainValueAttribute">#</a> <em>webglSeriesBar</em>.<strong>mainValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the main value attribute and returns this series. If <em>attribute</em> is not specified, returns the current main value attribute.</p>
+<p><a name="webglSeriesBar_baseValueAttribute" href="#webglSeriesBar_baseValueAttribute">#</a> <em>webglSeriesBar</em>.<strong>baseValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the base value attribute and returns this series. If <em>attribute</em> is not specified, returns the current base value attribute.</p>
+<p><a name="webglSeriesBar_bandwidthAttribute" href="#webglSeriesBar_bandwidthAttribute">#</a> <em>webglSeriesBar</em>.<strong>bandwidthAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the bandwidth attribute and returns this series. If <em>attribute</em> is not specified, returns the current bandwidth attribute.</p>
+<p>The attribute values should be provided in pixels.</p>
+<h4 id="boxplot">BoxPlot</h4>
+<p><a name="webglSeriesBoxPlot" href="#webglSeriesBoxPlot">#</a> fc.<strong>webglSeriesBoxPlot</strong>()</p>
+<p>Used to construct a new WebGL BoxPlot series</p>
+<p><a name="webglSeriesBoxPlot_lineWidth" href="#webglSeriesBoxPlot_lineWidth">#</a> <em>webglSeriesBoxPlot</em>.<strong>lineWidth</strong>(<em>width</em>)</p>
+<p>If <em>width</em> is specified, sets the width to the given value and returns this series. If <em>width</em> is not specified, returns the current width value.</p>
+<p>The value should be provided in pixels.</p>
+<p><a name="webglSeriesBoxPlot_crossValueAttribute" href="#webglSeriesBoxPlot_crossValueAttribute">#</a> <em>webglSeriesBoxPlot</em>.<strong>crossValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross value attribute.</p>
+<p><a name="webglSeriesBoxPlot_highValueAttribute" href="#webglSeriesBoxPlot_highValueAttribute">#</a> <em>webglSeriesBoxPlot</em>.<strong>highValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the high value attribute and returns this series. If <em>attribute</em> is not specified, returns the current high value attribute.</p>
+<p><a name="webglSeriesBoxPlot_upperQuartileValueAttribute" href="#webglSeriesBoxPlot_upperQuartileValueAttribute">#</a> <em>webglSeriesBoxPlot</em>.<strong>upperQuartileValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the upper quartile value attribute and returns this series. If <em>attribute</em> is not specified, returns the current upper quartile value attribute.</p>
+<p><a name="webglSeriesBoxPlot_medianValueAttribute" href="#webglSeriesBoxPlot_medianValueAttribute">#</a> <em>webglSeriesBoxPlot</em>.<strong>medianValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the median value attribute and returns this series. If <em>attribute</em> is not specified, returns the current median value attribute.</p>
+<p><a name="webglSeriesBoxPlot_lowerQuartileValueAttribute" href="#webglSeriesBoxPlot_lowerQuartileValueAttribute">#</a> <em>webglSeriesBoxPlot</em>.<strong>lowerQuartileValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the lower quartile value attribute and returns this series. If <em>attribute</em> is not specified, returns the current lower quartile value attribute.</p>
+<p><a name="webglSeriesBoxPlot_lowValueAttribute" href="#webglSeriesBoxPlot_lowValueAttribute">#</a> <em>webglSeriesBoxPlot</em>.<strong>lowValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the low value attribute and returns this series. If <em>attribute</em> is not specified, returns the current low value attribute.</p>
+<p><a name="webglSeriesBoxPlot_bandwidthAttribute" href="#webglSeriesBoxPlot_bandwidthAttribute">#</a> <em>webglSeriesBoxPlot</em>.<strong>bandwidthAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the bandwidth attribute and returns this series. If <em>attribute</em> is not specified, returns the current bandwidth attribute.</p>
+<p>The attribute values should be provided in pixels.</p>
+<p><a name="webglSeriesBoxPlot_capAttribute" href="#webglSeriesBoxPlot_capAttribute">#</a> <em>webglSeriesBoxPlot</em>.<strong>capAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cap attribute and returns this series. If <em>attribute</em> is not specified, returns the current cap attribute.</p>
+<p>The attribute values should be provided in pixels.</p>
+<h4 id="candlestick">Candlestick</h4>
+<p><a name="webglSeriesCandlestick" href="#webglSeriesCandlestick">#</a> fc.<strong>webglSeriesCandlestick</strong>()</p>
+<p>Used to construct a new WebGL Candlestick series.</p>
+<p><a name="webglSeriesCandlestick_lineWidth" href="#webglSeriesCandlestick_lineWidth">#</a> <em>webglSeriesCandlestick</em>.<strong>lineWidth</strong>(<em>width</em>)</p>
+<p>If <em>width</em> is specified, sets the width to the given value and returns this series. If <em>width</em> is not specified, returns the current width value.</p>
+<p>The value should be provided in pixels.</p>
+<p><a name="webglSeriesCandlestick_crossValueAttribute" href="#webglSeriesCandlestick_crossValueAttribute">#</a> <em>webglSeriesCandlestick</em>.<strong>crossValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross value attribute.</p>
+<p><a name="webglSeriesCandlestick_openValueAttribute" href="#webglSeriesCandlestick_openValueAttribute">#</a> <em>webglSeriesCandlestick</em>.<strong>openValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the open value attribute and returns this series. If <em>attribute</em> is not specified, returns the current open value attribute.</p>
+<p><a name="webglSeriesCandlestick_highValueAttribute" href="#webglSeriesCandlestick_highValueAttribute">#</a> <em>webglSeriesCandlestick</em>.<strong>highValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the high value attribute and returns this series. If <em>attribute</em> is not specified, returns the current high value attribute.</p>
+<p><a name="webglSeriesCandlestick_lowValueAttribute" href="#webglSeriesCandlestick_lowValueAttribute">#</a> <em>webglSeriesCandlestick</em>.<strong>lowValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the low value attribute and returns this series. If <em>attribute</em> is not specified, returns the current low value attribute.</p>
+<p><a name="webglSeriesCandlestick_closeValueAttribute" href="#webglSeriesCandlestick_closeValueAttribute">#</a> <em>webglSeriesCandlestick</em>.<strong>closeValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the close value attribute and returns this series. If <em>attribute</em> is not specified, returns the current close value attribute.</p>
+<p><a name="webglSeriesCandlestick_bandwidthAttribute" href="#webglSeriesCandlestick_bandwidthAttribute">#</a> <em>webglSeriesCandlestick</em>.<strong>bandwidthAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the bandwidth attribute and returns this series. If <em>attribute</em> is not specified, returns the current bandwidth attribute.</p>
+<p>The attribute values should be provided in pixels.</p>
+<h4 id="errorbar">ErrorBar</h4>
+<p><a name="webglSeriesErrorBar" href="#webglSeriesErrorBar">#</a> fc.<strong>webglSeriesErrorBar</strong>()</p>
+<p>Used to construct a new WebGL ErrorBar series.</p>
+<p><a name="webglSeriesErrorBar_lineWidth" href="#webglSeriesErrorBar_lineWidth">#</a> <em>webglSeriesErrorBar</em>.<strong>lineWidth</strong>(<em>width</em>)</p>
+<p>If <em>width</em> is specified, sets the width to the given value and returns this series. If <em>width</em> is not specified, returns the current width value.</p>
+<p>The value should be provided in pixels.</p>
+<p><a name="webglSeriesErrorBar_crossValueAttribute" href="#webglSeriesErrorBar_crossValueAttribute">#</a> <em>webglSeriesErrorBar</em>.<strong>crossValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross value attribute.</p>
+<p><a name="webglSeriesErrorBar_highValueAttribute" href="#webglSeriesErrorBar_highValueAttribute">#</a> <em>webglSeriesErrorBar</em>.<strong>highValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the high value attribute and returns this series. If <em>attribute</em> is not specified, returns the current high value attribute.</p>
+<p><a name="webglSeriesErrorBar_lowValueAttribute" href="#webglSeriesErrorBar_lowValueAttribute">#</a> <em>webglSeriesErrorBar</em>.<strong>lowValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the low value attribute and returns this series. If <em>attribute</em> is not specified, returns the current low value attribute.</p>
+<p><a name="webglSeriesErrorBar_bandwidthAttribute" href="#webglSeriesErrorBar_bandwidthAttribute">#</a> <em>webglSeriesErrorBar</em>.<strong>bandwidthAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the bandwidth attribute and returns this series. If <em>attribute</em> is not specified, returns the current bandwidth attribute.</p>
+<p>The attribute values should be provided in pixels.</p>
+<h4 id="line">Line</h4>
+<p><a name="webglSeriesLine" href="#webglSeriesLine">#</a> fc.<strong>webglSeriesLine</strong>()</p>
+<p>Used to construct a new WebGL Line series.</p>
+<p><a name="webglSeriesLine_lineWidth" href="#webglSeriesLine_lineWidth">#</a> <em>webglSeriesLine</em>.<strong>lineWidth</strong>(<em>width</em>)</p>
+<p>If <em>width</em> is specified, sets the width to the given value and returns this series. If <em>width</em> is not specified, returns the current width value.</p>
+<p>The value should be provided in pixels.</p>
+<p><a name="webglSeriesLine_crossPreviousValueAttribute" href="#webglSeriesLine_crossPreviousValueAttribute">#</a> <em>webglSeriesLine</em>.<strong>crossPreviousValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross previous value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross previous value attribute.</p>
+<p><a name="webglSeriesLine_crossValueAttribute" href="#webglSeriesLine_crossValueAttribute">#</a> <em>webglSeriesLine</em>.<strong>crossValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross value attribute.</p>
+<p><a name="webglSeriesLine_crossNextValueAttribute" href="#webglSeriesLine_crossNextValueAttribute">#</a> <em>webglSeriesLine</em>.<strong>crossNextValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross next value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross next value attribute.</p>
+<p><a name="webglSeriesLine_crossPreviousPreviousValueAttribute" href="#webglSeriesLine_crossPreviousPreviousValueAttribute">#</a> <em>webglSeriesLine</em>.<strong>crossPreviousPreviousValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross previous previous value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross previous previous value attribute.</p>
+<p><a name="webglSeriesLine_mainPreviousValueAttribute" href="#webglSeriesLine_mainPreviousValueAttribute">#</a> <em>webglSeriesLine</em>.<strong>mainPreviousValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the main previous value attribute and returns this series. If <em>attribute</em> is not specified, returns the current main previous value attribute.</p>
+<p><a name="webglSeriesLine_mainValueAttribute" href="#webglSeriesLine_mainValueAttribute">#</a> <em>webglSeriesLine</em>.<strong>mainValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the main value attribute and returns this series. If <em>attribute</em> is not specified, returns the current main value attribute.</p>
+<p><a name="webglSeriesLine_mainNextValueAttribute" href="#webglSeriesLine_mainNextValueAttribute">#</a> <em>webglSeriesLine</em>.<strong>mainNextValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the main next value attribute and returns this series. If <em>attribute</em> is not specified, returns the current main next value attribute.</p>
+<p><a name="webglSeriesLine_mainPreviousPreviousValueAttribute" href="#webglSeriesLine_mainPreviousPreviousValueAttribute">#</a> <em>webglSeriesLine</em>.<strong>mainPreviousPreviousValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the main previous previous value attribute and returns this series. If <em>attribute</em> is not specified, returns the current main previous previous value attribute.</p>
+<p><a name="webglSeriesLine_definedNextAttribute" href="#webglSeriesLine_definedNextAttribute">#</a> <em>webglSeriesLine</em>.<strong>definedNextAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the defined next attribute and returns this series. If <em>attribute</em> is not specified, returns the current defined next attribute.</p>
+<p>The attribute values should either be <code>1</code> (to indicate the data point is defined) or <code>0</code> (to indicate the data point is not defined).</p>
+<h4 id="ohlc">Ohlc</h4>
+<p><a name="webglSeriesOhlc" href="#webglSeriesOhlc">#</a> fc.<strong>webglSeriesOhlc</strong>()</p>
+<p>Used to construct a new WebGL Ohlc series.</p>
+<p><a name="webglSeriesOhlc_lineWidth" href="#webglSeriesOhlc_lineWidth">#</a> <em>webglSeriesOhlc</em>.<strong>lineWidth</strong>(<em>width</em>)</p>
+<p>If <em>width</em> is specified, sets the width to the given value and returns this series. If <em>width</em> is not specified, returns the current width value.</p>
+<p>The value should be provided in pixels.</p>
+<p><a name="webglSeriesOhlc_crossValueAttribute" href="#webglSeriesOhlc_crossValueAttribute">#</a> <em>webglSeriesOhlc</em>.<strong>crossValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross value attribute.</p>
+<p><a name="webglSeriesOhlc_openValueAttribute" href="#webglSeriesOhlc_openValueAttribute">#</a> <em>webglSeriesOhlc</em>.<strong>openValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the open value attribute and returns this series. If <em>attribute</em> is not specified, returns the current open value attribute.</p>
+<p><a name="webglSeriesOhlc_highValueAttribute" href="#webglSeriesOhlc_highValueAttribute">#</a> <em>webglSeriesOhlc</em>.<strong>highValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the high value attribute and returns this series. If <em>attribute</em> is not specified, returns the current high value attribute.</p>
+<p><a name="webglSeriesOhlc_lowValueAttribute" href="#webglSeriesOhlc_lowValueAttribute">#</a> <em>webglSeriesOhlc</em>.<strong>lowValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the low value attribute and returns this series. If <em>attribute</em> is not specified, returns the current low value attribute.</p>
+<p><a name="webglSeriesOhlc_closeValueAttribute" href="#webglSeriesOhlc_closeValueAttribute">#</a> <em>webglSeriesOhlc</em>.<strong>closeValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the close value attribute and returns this series. If <em>attribute</em> is not specified, returns the current close value attribute.</p>
+<p><a name="webglSeriesOhlc_bandwidthAttribute" href="#webglSeriesOhlc_bandwidthAttribute">#</a> <em>webglSeriesOhlc</em>.<strong>bandwidthAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the bandwidth attribute and returns this series. If <em>attribute</em> is not specified, returns the current bandwidth attribute.</p>
+<p>The attribute values should be provided in pixels.</p>
+<h4 id="point">Point</h4>
+<p><a name="webglSeriesPoint" href="#webglSeriesPoint">#</a> fc.<strong>webglSeriesPoint</strong>()</p>
+<p>Used to construct a new WebGL Point series.</p>
+<p><a name="webglSeriesPoint_type" href="#webglSeriesPoint_type">#</a> <em>webglSeriesPoint</em>.<strong>type</strong>(<em>symbolTypeShader</em>)</p>
+<p>If <em>symbolTypeShader</em> is specified, sets the symbol type shader and returns this series. If <em>symbolTypeShader</em> is not specified, returns the current symbol type shader.</p>
+<p>A <em>symbolTypeShader</em> can be generated using the <a href="#symbol-mapper">webglSymbolMapper</a>.</p>
+<p><a name="webglSeriesPoint_crossValueAttribute" href="#webglSeriesPoint_crossValueAttribute">#</a> <em>webglSeriesPoint</em>.<strong>crossValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the cross value attribute and returns this series. If <em>attribute</em> is not specified, returns the current cross value attribute.</p>
+<p><a name="webglSeriesPoint_mainValueAttribute" href="#webglSeriesPoint_mainValueAttribute">#</a> <em>webglSeriesPoint</em>.<strong>mainValueAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the main value attribute and returns this series. If <em>attribute</em> is not specified, returns the current main value attribute.</p>
+<p><a name="webglSeriesPoint_sizeAttribute" href="#webglSeriesPoint_sizeAttribute">#</a> <em>webglSeriesPoint</em>.<strong>sizeAttribute</strong>(<em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, sets the size attribute and returns this series. If <em>attribute</em> is not specified, returns the current size attribute.</p>
+<p>The attribute values should be provided as pixel areas.</p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="buffers" href="#buffers" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Buffers
+                </h3>
+<p>The buffer components can be used for creating and modifying WebGL buffers. These are used to pass values into attributes and uniforms so that they can be accessed in a shader.</p>
+<p>The types file is also available for managing the typing of values being passed into the WebGL pipeline.</p>
+<h4 id="attribute-buffer-builders">Attribute Buffer Builders</h4>
+<p>The attribute components can be used to generate <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLBuffer">WebGLBuffers</a> and bind them to the context of a given <a href="#program-builder">webglProgramBuilder</a>. A number of different builders are available to accomodate the most common use cases.</p>
+<p>Example use of the builders can be seen in the <a href="#series">series</a> components where the builders are used to provide the attribute values.</p>
+<h5 id="element-attribute">Element Attribute</h5>
+<p><a name="webglElementAttribute" href="#webglElementAttribute">#</a> fc.<strong>webglElementAttribute</strong>()</p>
+<p>Used to generate a buffer containing values to be used on a per element basis. In this context an element is an instance of a repeatedly drawn object, for example each individual candlestick on a candlestick chart is an element.</p>
+<p><a name="webglElementAttribute_normalized" href="#webglElementAttribute_normalized">#</a> <em>webglElementAttribute</em>.<strong>normalized</strong>(<em>boolean</em>)</p>
+<p>If <em>boolean</em> is specified, sets the normalized property and returns this attribute builder. If <em>boolean</em> is not specified, returns the current value of normalized.</p>
+<p>The normalized property specifies whether integer data values should be normalized when being cast to a float, the default value is false.</p>
+<p>More information on how values are normalized can be found <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer">here</a>.</p>
+<p><a name="webglElementAttribute_location" href="#webglElementAttribute_location">#</a> <em>webglElementAttribute</em>.<strong>location</strong>(<em>index</em>)</p>
+<p>If <em>index</em> is specified, sets the location property and returns this attribute builder. If <em>index</em> is not specified, returns the current value of location.</p>
+<p>The location property is used to specify the index of the vertex attribute being modified. The appropriate value for an attribute can be found using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getAttribLocation"><code>WebGLRenderingContext.getAttribLocation()</code></a>. This is normally specified on your behalf by <a href="#buffer-builder">bufferBuilder</a>.</p>
+<p><a name="webglElementAttribute_data" href="#webglElementAttribute_data">#</a> <em>webglElementAttribute</em>.<strong>data</strong>(<em>array</em>)</p>
+<p>If <em>array</em> is specified, sets the data property and returns this attribute builder. If <em>array</em> is not specified, returns the current value of data.</p>
+<p>The data property is used to allow the value function to run for each entry in the data set.</p>
+<p><a name="webglElementAttribute_value" href="#webglElementAttribute_value">#</a> <em>webglElementAttribute</em>.<strong>value</strong>(<em>valueFunc</em>)</p>
+<p>If <em>valueFunc</em> is specified, sets the value property to the given function and returns this attribute builder. If <em>valueFunc</em> is not specified, returns the current value function.</p>
+<p>The value function is run for each entry in the data set, receiving the current data point and its index as arguments, <em><code>valueFunc(data, index)</code></em>.</p>
+<p>If the size property is set to <code>1</code>, then <em>valueFunc</em> must return a single value. If the size property is set to a value other than <code>1</code> then <em>valueFunc</em> must return an array of length equal to the size property.</p>
+<p><a name="webglElementAttribute_size" href="#webglElementAttribute_size">#</a> <em>webglElementAttribute</em>.<strong>size</strong>(<em>size</em>)</p>
+<p>If <em>size</em> is specified, sets the size property and returns this attribute builder. If <em>size</em> is not specified, returns the current value of size.</p>
+<p>The size property is used to specify the number of components to the attribute. It must have the value <code>1</code> (default), <code>2</code>, <code>3</code>, or <code>4</code>, corresponding to the shader types <code>float</code>, <code>vec2</code>, <code>vec3</code>, and <code>vec4</code> respectively.</p>
+<p><a name="webglElementAttribute_type" href="#webglElementAttribute_type">#</a> <em>webglElementAttribute</em>.<strong>type</strong>(<em>type</em>)</p>
+<p>If <em>type</em> is specified, sets the type property and returns this attribute builder. If <em>type</em> is not specified, returns the current type.</p>
+<p>The type property is used to specify the type of the typed array used for the buffer data. Valid types can be accessed from <a href="#types">webglTypes</a>.</p>
+<h5 id="adjacent-element-attribute">Adjacent Element Attribute</h5>
+<p><a name="webglAdjacentElementAttribute" href="#webglAdjacentElementAttribute">#</a> fc.<strong>webglAdjacentElementAttribute</strong>(<em>minOffset</em>, <em>maxOffset</em>)</p>
+<p>Used to generate a buffer where each element requires data from another element adjacent to it. In this context an element is an instance of a repeatedly drawn object, for example each individual candlestick on a candlestick chart is an element.</p>
+<p><em>minOffset</em> specifies the minimum bound for the offset property, this controls how many previous elements are available to access from the builder. The default value is <code>0</code>.  
+<em>maxOffset</em> specifies the maximum bound for the offset property, this controls how many following elements are available to access from the builder. The default value is <code>0</code>.</p>
+<p><a name="webglAdjacentElementAttribute_offset" href="#webglAdjacentElementAttribute_offset">#</a> <em>webglAdjacentElementAttribute</em>.<strong>offset</strong>(<em>offset</em>)</p>
+<p>Sets the offset property and returns an attribute builder that accesses the same data with the given <em>offset</em>.</p>
+<p>The value of <em>offset</em> must be within the bounds of <code>minOffset</code> and <code>maxOffset</code>.</p>
+<p><a name="webglAdjacentElementAttribute_normalized" href="#webglAdjacentElementAttribute_normalized">#</a> <em>webglAdjacentElementAttribute</em>.<strong>normalized</strong>(<em>boolean</em>)</p>
+<p>If <em>boolean</em> is specified, sets the normalized property and returns this attribute builder. If <em>boolean</em> is not specified, returns the current value of normalized.</p>
+<p>The normalized property specifies whether integer data values should be normalized when being cast to a float, the default value is false.</p>
+<p>More information on how values are normalized can be found <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer">here</a>.</p>
+<p><a name="webglAdjacentElementAttribute_location" href="#webglAdjacentElementAttribute_location">#</a> <em>webglAdjacentElementAttribute</em>.<strong>location</strong>(<em>index</em>)</p>
+<p>If <em>index</em> is specified, sets the location property and returns this attribute builder. If <em>index</em> is not specified, returns the current value of location.</p>
+<p>The location property is used to specify the index of the vertex attribute being modified. The appropriate value for an attribute can be found using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getAttribLocation"><code>WebGLRenderingContext.getAttribLocation()</code></a>. This is normally specified on your behalf by <a href="#buffer-builder">bufferBuilder</a>.</p>
+<p><a name="webglAdjacentElementAttribute_data" href="#webglAdjacentElementAttribute_data">#</a> <em>webglAdjacentElementAttribute</em>.<strong>data</strong>(<em>array</em>)</p>
+<p>If <em>array</em> is specified, sets the data property and returns this attribute builder. If <em>array</em> is not specified, returns the current value of data.</p>
+<p>The data property is used to allow the value function to run for each entry in the data set.</p>
+<p><a name="webglAdjacentElementAttribute_value" href="#webglAdjacentElementAttribute_value">#</a> <em>webglAdjacentElementAttribute</em>.<strong>value</strong>(<em>valueFunc</em>)</p>
+<p>If <em>valueFunc</em> is specified, sets the value property to the given function and returns this attribute builder. If <em>valueFunc</em> is not specified, returns the current value function.</p>
+<p>The value function is run for each entry in the data set, receiving the current data point and its index as arguments, <em><code>valueFunc(data, index)</code></em>. </p>
+<p>If the size property is set to <code>1</code>, then <em>valueFunc</em> must return a single value. If the size property is set to a value other than <code>1</code> then <em>valueFunc</em> must return an array of length equal to the size property.</p>
+<p><a name="webglAdjacentElementAttribute_size" href="#webglAdjacentElementAttribute_size">#</a> <em>webglAdjacentElementAttribute</em>.<strong>size</strong>(<em>size</em>)</p>
+<p>If <em>size</em> is specified, sets the size property and returns this attribute builder. If <em>size</em> is not specified, returns the current value of size.</p>
+<p>The size property is used to specify the number of components to the attribute. It must have the value <code>1</code> (default), <code>2</code>, <code>3</code>, or <code>4</code>, corresponding to the shader types <code>float</code>, <code>vec2</code>, <code>vec3</code>, and <code>vec4</code> respectively.</p>
+<p><a name="webglAdjacentElementAttribute_type" href="#webglAdjacentElementAttribute_type">#</a> <em>webglAdjacentElementAttribute</em>.<strong>type</strong>(<em>type</em>)</p>
+<p>If <em>type</em> is specified, sets the type property and returns this attribute builder. If <em>type</em> is not specified, returns the current type.</p>
+<p>The type property is used to specify the type of the typed array used for the buffer data, the default is <code>Float</code>. Valid types can be accessed from <a href="#types">webglTypes</a>.</p>
+<h5 id="vertex-attribute">Vertex Attribute</h5>
+<p><a name="webglVertexAttribute" href="#webglVertexAttribute">#</a> fc.<strong>webglVertexAttribute</strong>()</p>
+<p>Used to generate a buffer where values are to be used on a per vertex basis within an element. For example, the corners of a single bar element within a bar series.</p>
+<p><a name="webglVertexAttribute_normalized" href="#webglVertexAttribute_normalized">#</a> <em>webglVertexAttribute</em>.<strong>normalized</strong>(<em>boolean</em>)</p>
+<p>If <em>boolean</em> is specified, sets the normalized property and returns this attribute builder. If <em>boolean</em> is not specified, returns the current value of normalized.</p>
+<p>The normalized property specifies whether integer data values should be normalized when being cast to a float, the default value is false.</p>
+<p>More information on how values are normalized can be found <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer">here</a>.</p>
+<p><a name="webglVertexAttribute_location" href="#webglVertexAttribute_location">#</a> <em>webglVertexAttribute</em>.<strong>location</strong>(<em>index</em>)</p>
+<p>If <em>index</em> is specified, sets the location property and returns this attribute builder. If <em>index</em> is not specified, returns the current value of location.</p>
+<p>The location property is used to specify the index of the vertex attribute being modified. The appropriate value for an attribute can be found using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getAttribLocation"><code>WebGLRenderingContext.getAttribLocation()</code></a>. This is normally specified on your behalf by <a href="#buffer-builder">bufferBuilder</a>.</p>
+<p><a name="webglVertexAttribute_data" href="#webglVertexAttribute_data">#</a> <em>webglVertexAttribute</em>.<strong>data</strong>(<em>array</em>)</p>
+<p>If <em>array</em> is specified, sets the data property and returns this attribute builder. If <em>array</em> is not specified, returns the current value of data.</p>
+<p>The data property is used to allow the value function to run for each entry in the data set.</p>
+<p><a name="webglVertexAttribute_value" href="#webglVertexAttribute_value">#</a> <em>webglVertexAttribute</em>.<strong>value</strong>(<em>valueFunc</em>)</p>
+<p>If <em>valueFunc</em> is specified, sets the value property to the given function and returns this attribute builder. If <em>valueFunc</em> is not specified, returns the current value function.</p>
+<p>The value function is run for each entry in the data set, receiving the current data point and its index as arguments, <em><code>valueFunc(data, index)</code></em>.</p>
+<p>If the size property is set to <code>1</code>, then <em>valueFunc</em> must return a single value. If the size property is set to a value other than <code>1</code> then <em>valueFunc</em> must return an array of length equal to the size property.</p>
+<p><a name="webglVertexAttribute_size" href="#webglVertexAttribute_size">#</a> <em>webglVertexAttribute</em>.<strong>size</strong>(<em>size</em>)</p>
+<p>If <em>size</em> is specified, sets the size property and returns this attribute builder. If <em>size</em> is not specified, returns the current value of size.</p>
+<p>The size property is used to specify the number of components to the attribute. It must have the value <code>1</code> (default), <code>2</code>, <code>3</code>, or <code>4</code>, corresponding to the shader types <code>float</code>, <code>vec2</code>, <code>vec3</code>, and <code>vec4</code> respectively.</p>
+<p><a name="webglVertexAttribute_type" href="#webglVertexAttribute_type">#</a> <em>webglVertexAttribute</em>.<strong>type</strong>(<em>type</em>)</p>
+<p>If <em>type</em> is specified, sets the type property and returns this attribute builder. If <em>type</em> is not specified, returns the current type.</p>
+<p>The type property is used to specify the type of the typed array used for the buffer data. Valid types can be accessed from <a href="#types">webglTypes</a>.</p>
+<h5 id="base-attribute">Base Attribute</h5>
+<p><a name="webglBaseAttribute" href="#webglBaseAttribute">#</a> fc.<strong>webglBaseAttribute</strong>()</p>
+<p>The generic base attribute builder that all the other attribute builders inherit from to provide their functionality. This will bind a buffer to a generic vertex attribute, accessed at <a href="#base-attribute"><strong>location</strong></a>, but <em>is not</em> responsible for binding data to the buffer.</p>
+<p>This component can be used to create a custom attribute builder, or to simply bind a buffer to a vertex attribute so that data can be provided.</p>
+<p><a name="webglBaseAttribute_buffer" href="#webglBaseAttribute_buffer">#</a> <em>webglBaseAttribute</em>.<strong>buffer</strong>(<em>WebGLBuffer</em>)</p>
+<p>If <em>WebGLBuffer</em> is specified, sets the buffer property and returns this attribute builder. If <em>WebGLBuffer</em> is not specified, returns the current buffer.</p>
+<p>This property does not need to be set as the component will create a buffer if necessary, a buffer can be manually created using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/createBuffer"><code>WebGLRenderingContext.createBuffer()</code></a>.</p>
+<p><a name="webglBaseAttribute_location" href="#webglBaseAttribute_location">#</a> <em>webglBaseAttribute</em>.<strong>location</strong>(<em>index</em>)</p>
+<p>If <em>index</em> is specified, sets the location property and returns this attribute builder. If <em>index</em> is not specified, returns the current value of location.</p>
+<p>The location property is used to specify the index of the vertex attribute being modified. The appropriate value for an attribute can be found using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getAttribLocation"><code>WebGLRenderingContext.getAttribLocation()</code></a>. This is normally specified on your behalf by <a href="#buffer-builder">bufferBuilder</a>.</p>
+<p><a name="webglBaseAttribute_size" href="#webglBaseAttribute_size">#</a> <em>webglBaseAttribute</em>.<strong>size</strong>(<em>size</em>)</p>
+<p>If <em>size</em> is specified, sets the size property and returns this attribute builder. If <em>size</em> is not specified, returns the current value of size.</p>
+<p>The size property is used to specify the number of components to the attribute. It must have the value <code>1</code> (default), <code>2</code>, <code>3</code>, or <code>4</code>, corresponding to the shader types <code>float</code>, <code>vec2</code>, <code>vec3</code>, and <code>vec4</code> respectively.</p>
+<p><a name="webglBaseAttribute_type" href="#webglBaseAttribute_type">#</a> <em>webglBaseAttribute</em>.<strong>type</strong>(<em>type</em>)</p>
+<p>If <em>type</em> is specified, sets the type property and returns this attribute builder. If <em>type</em> is not specified, returns the current type.</p>
+<p>The type property is used to specify the type of the typed array used for the buffer data. Valid types can be accessed from <a href="#types">webglTypes</a>.</p>
+<p><a name="webglBaseAttribute_normalized" href="#webglBaseAttribute_normalized">#</a> <em>webglBaseAttribute</em>.<strong>normalized</strong>(<em>boolean</em>)</p>
+<p>If <em>boolean</em> is specified, sets the normalized property and returns this attribute builder. If <em>boolean</em> is not specified, returns the current value of normalized.</p>
+<p>The normalized property specifies whether integer data values should be normalized when being cast to a float, the default value is false.</p>
+<p>More information on how values are normalized can be found <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer">here</a>.</p>
+<p><a name="webglBaseAttribute_stride" href="#webglBaseAttribute_stride">#</a> <em>webglBaseAttribute</em>.<strong>stride</strong>(<em>stride</em>)</p>
+<p>If <em>stride</em> is specified, sets the stride property and returns this attribute builder. If <em>stride</em> is not specified, returns the current stride.</p>
+<p>The stride property is used to specify the offset in bytes between the start of consecutive vertex attribute values, it must be a value from <code>0</code> (default) to <code>255</code>. By using the stride property it is possible to create a buffer of interleaved attribute values.</p>
+<p><a name="webglBaseAttribute_offset" href="#webglBaseAttribute_offset">#</a> <em>webglBaseAttribute</em>.<strong>offset</strong>(<em>offset</em>)</p>
+<p>If <em>offset</em> is specified, sets the offset property and returns this attribute builder. If <em>offset</em> is not specified, returns the current offset.</p>
+<p>The offset property is used to specify the offset in bytes of the first value in the vertex attribute array. If set, the offset must be a multiple of the byte length of <a href="#base-attribute">type</a>.</p>
+<h4 id="uniform-builder">Uniform Builder</h4>
+<p><a name="webglUniform" href="#webglUniform">#</a> fc.<strong>webglUniform</strong>()</p>
+<p>Used to create a single value that is provided to every vertex.</p>
+<p><a name="webglUniform_location" href="#webglUniform_location">#</a> <em>webglUniform</em>.<strong>location</strong>(<em>index</em>)</p>
+<p>If <em>index</em> is specified, sets the location property and returns this uniform builder. If <em>index</em> is not specified, returns the current location.</p>
+<p>The location property is used to specify the index location of the uniform being modified. The appropriate value can be found using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getUniformLocation"><code>WebGLRenderingContext.getUniformLocation()</code></a>. This is normally specified on your behalf by <a href="#buffer-builder">bufferBuilder</a>.</p>
+<p><a name="webglUniform_data" href="#webglUniform_data">#</a> <em>webglUniform</em>.<strong>data</strong>(<em>data</em>)</p>
+<p>If <em>data</em> is specified, sets the data property and returns this uniform builder. If <em>data</em> is not specified, returns the current data.</p>
+<p>The data property is used to set the value of the uniform, the value provided can either be a single value or an array with a maximum length of <code>4</code>.</p>
+<h4 id="buffer-builder">Buffer Builder</h4>
+<p><a name="webglBufferBuilder" href="#webglBufferBuilder">#</a> fc.<strong>webglBufferBuilder</strong>()</p>
+<p>This component manages the mapping of attribute/uniform builders to their shader identifiers.</p>
+<p><a name="webglBufferBuilder_attribute" href="#webglBufferBuilder_attribute">#</a> <em>webglBufferBuilder</em>.<strong>attribute</strong>(<em>attributeName</em>, <em>attribute</em>)</p>
+<p>If <em>attribute</em> is specified, assigns the <em>attribute</em> for the specified <em>attributeName</em> and returns this builder. If <em>attribute</em> is not specified, returns the attribute  to <em>attributeName</em>.</p>
+<p><a name="webglBufferBuilder_uniform" href="#webglBufferBuilder_uniform">#</a> <em>webglBufferBuilder</em>.<strong>uniform</strong>(<em>uniformName</em>, <em>uniform</em>)</p>
+<p>If <em>uniform</em> is specified, assigns the <em>uniform</em> for the specified <em>uniformName</em> and returns this builder. If <em>uniform</em> is not specified, returns the uniform  to <em>uniformName</em>.</p>
+<p><a name="webglBufferBuilder_elementIndices" href="#webglBufferBuilder_elementIndices">#</a> <em>webglBufferBuilder</em>.<strong>elementIndices</strong>(<em>elementIndices</em>)</p>
+<p>If <em>elementIndices</em> is specified, sets element indices and returns this builder. If <em>elementIndices</em> is not specified, returns the current element indices.</p>
+<p>See <a href="#webglElementIndices">webglElementIndices</a>.</p>
+<h4 id="element-indices">Element Indices</h4>
+<p><a name="webglElementIndices" href="#webglElementIndices">#</a> fc.<strong>webglElementIndices</strong>()</p>
+<p>Used to create an element array buffer. This allows vertices to be defined once and reused by providing an index specifying which vertex we are currently using.</p>
+<p>For example to draw two triangles that share a vertex we could provide the values <code>[0, 1, 2, 1, 3, 4]</code>. Here we will draw a triangle with the vertices <code>0</code>, <code>1</code>, and <code>2</code>, and a second triangle with the vertices <code>1</code>, <code>3</code>, and <code>4</code>. We only have to specify the data for <code>5</code> vertices as we are reusing vertex <code>1</code>.</p>
+<p><a name="webglElementIndices_data" href="#webglElementIndices_data">#</a> <em>webglElementIndices</em>.<strong>data</strong>(<em>data</em>)</p>
+<p>If <em>data</em> is specified, sets data and returns this builder. If <em>data</em> is not specified, returns the current data.</p>
+<p><em>data</em> should be an array containing an ordered list of the vertices to draw.</p>
+<h4 id="types">Types</h4>
+<p><a name="webglTypes" href="#webglTypes">#</a> fc.<strong>webglTypes</strong></p>
+<p>An enum used to access the WebGL values associated with different data types.</p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="scales" href="#scales" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Scales
+                </h3>
+<p>The scale components can be used for applying a scaling and translation to a variable within the vertex shader. This is useful for converting values from a data range to screen space.</p>
+<p>Any vector variables can have a scaling applied to them.</p>
+<p>Please note that the <a href="#log">Log</a> and <a href="#pow">Pow</a> scales do not behave correctly for all <code>base</code> and <code>exponent</code> values respectively, this issue can be tracked <a href="https://github.com/d3fc/d3fc/issues/1387">here</a>.</p>
+<h4 id="linear">Linear</h4>
+<p><a name="webglScaleLinear" href="#webglScaleLinear">#</a> fc.<strong>webglScaleLinear</strong>()</p>
+<p>Used to apply a linear scaling and translation to variables.</p>
+<p><a name="webglScaleLinear_domain" href="#webglScaleLinear_domain">#</a> <em>webglScaleLinear</em>.<strong>domain</strong>(<em>domain</em>)</p>
+<p>If <em>domain</em> is specified, sets the domain and returns this scale. If <em>domain</em> is not specified, returns the current domain.</p>
+<p><em>domain</em> should be an array containing the lower and upper bounds for the data set to be scaled.</p>
+<p><a name="webglScaleLinear_range" href="#webglScaleLinear_range">#</a> <em>webglScaleLinear</em>.<strong>range</strong>(<em>range</em>)</p>
+<p>If <em>range</em> is specified, sets the range and returns this scale. If <em>range</em> is not specified, returns the current range.</p>
+<p><em>range</em> should be an array containing the lower and upper bounds for the drawing area, given in draw space coordinates. Defaults to <code>[-1, 1]</code>, the full canvas.</p>
+<h4 id="log">Log</h4>
+<p><a name="webglScaleLog" href="#webglScaleLog">#</a> fc.<strong>webglScaleLog</strong>()</p>
+<p>Used to apply a logarithmic scaling and translation to variables.</p>
+<p><a name="webglScaleLog_base" href="#webglScaleLog_base">#</a> <em>webglScaleLog</em>.<strong>base</strong>(<em>base</em>)</p>
+<p>If <em>base</em> is specified, sets the base and returns this scale. If <em>base</em> is not specified, returns the current base.</p>
+<p>The value provided is used as the logarithm base.</p>
+<p><a name="webglScaleLog_domain" href="#webglScaleLog_domain">#</a> <em>webglScaleLog</em>.<strong>domain</strong>(<em>domain</em>)</p>
+<p>If <em>domain</em> is specified, sets the domain and returns this scale. If <em>domain</em> is not specified, returns the current domain.</p>
+<p><em>domain</em> should be an array containing the lower and upper bounds for the data set to be scaled.</p>
+<p><a name="webglScaleLog_range" href="#webglScaleLog_range">#</a> <em>webglScaleLog</em>.<strong>range</strong>(<em>range</em>)</p>
+<p>If <em>range</em> is specified, sets the range and returns this scale. If <em>range</em> is not specified, returns the current range.</p>
+<p><em>range</em> should be an array containing the lower and upper bounds for the drawing area, given in draw space coordinates. Defaults to <code>[-1, 1]</code>, the full canvas.</p>
+<h4 id="pow">Pow</h4>
+<p><a name="webglScalePow" href="#webglScalePow">#</a> fc.<strong>webglScalePow</strong>()</p>
+<p>Used to apply an exponential scaling and translation to variables.</p>
+<p><a name="webglScalePow_exponent" href="#webglScalePow_exponent">#</a> <em>webglScalePow</em>.<strong>exponent</strong>(<em>exponent</em>)</p>
+<p>If <em>exponent</em> is specified, sets the exponent and returns this scale. If <em>exponent</em> is not specified, returns the current exponent.</p>
+<p>The value provided is used as the exponent.</p>
+<p><a name="webglScalePow_domain" href="#webglScalePow_domain">#</a> <em>webglScalePow</em>.<strong>domain</strong>(<em>domain</em>)</p>
+<p>If <em>domain</em> is specified, sets the domain and returns this scale. If <em>domain</em> is not specified, returns the current domain.</p>
+<p><em>domain</em> should be an array containing the lower and upper bounds for the data set to be scaled.</p>
+<p><a name="webglScalePow_range" href="#webglScalePow_range">#</a> <em>webglScalePow</em>.<strong>range</strong>(<em>range</em>)</p>
+<p>If <em>range</em> is specified, sets the range and returns this scale. If <em>range</em> is not specified, returns the current range.</p>
+<p><em>range</em> should be an array containing the lower and upper bounds for the drawing area, given in draw space coordinates. Defaults to <code>[-1, 1]</code>, the full canvas.</p>
+<h4 id="scale-mapper">Scale Mapper</h4>
+<p><a name="webglScaleMapper" href="#webglScaleMapper">#</a> fc.<strong>webglScaleMapper</strong>(<em>scale</em>)</p>
+<p>Used to map a <a href="https://github.com/d3/d3-scale#continuous-scales">D3 Scale</a> (<em>scale</em>) to a WebGL equivalent, all relevant properties are copied across.</p>
+<p>Returns an object containing two fields, <code>scale</code>, and <code>glScale</code>.</p>
+<p>On a successful mapping the <code>scale</code> field will contain a <a href="https://github.com/d3/d3-scale#scaleIdentity"><code>d3.scaleIdentity</code></a> and the <code>glScale</code> field will contain an appropriate WebGL scale.<br>On an unsuccessful mapping the <code>scale</code> field will contain <em>scale</em> and the <code>glScale</code> field will contain a <a href="#linear"><code>webglScaleLinear</code></a>.</p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="shader-builder" href="#shader-builder" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Shader Builder
+                </h3>
+<p><a name="webglShaderBuilder" href="#webglShaderBuilder">#</a> fc.<strong>webglShaderBuilder</strong>(<em>base</em>)</p>
+<p>Used to allow shaders to be built in parts, this can be useful for allowing optional lines of shader code to be added. For example, given a condition, a line can be appended to a shader to change the output color.</p>
+<p><em>base</em> must be a function that accepts two arguments, a header for the shader and a body for the shader. It must return a string that contains the header and a main function surrounding the body.</p>
+<p>An example of a base could be:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> base = <span class="hljs-function">(<span class="hljs-params">header, body</span>) =&gt;</span> <span class="hljs-string">`
+  precision mediump float;
+  <span class="hljs-subst">${header}</span>
+  void main() {
+    <span class="hljs-subst">${body}</span>
+  }
+`</span>;</code></pre>
+<p><a name="webglShaderBuilder_appendHeader" href="#webglShaderBuilder_appendHeader">#</a> <em>webglShaderBuilder</em>.<strong>appendHeader</strong>(<em>header</em>)</p>
+<p>Appends <em>header</em> to the end of the current headers.</p>
+<p><em>header</em> must be a string containing GLSL code.</p>
+<p><a name="webglShaderBuilder_insertHeader" href="#webglShaderBuilder_insertHeader">#</a> <em>webglShaderBuilder</em>.<strong>insertHeader</strong>(<em>header</em>, <em>before</em>)</p>
+<p>Inserts <em>header</em> before the line provided in the <em>before</em> argument.</p>
+<p><em>header</em> must be a string containing GLSL code.<br><em>before</em> must be a string containing GLSL code already in the current headers. If <em>before</em> does not match any existing headers then <em>header</em> will be appended to the end of the current headers.</p>
+<p><a name="webglShaderBuilder_appendHeaderIfNotExists" href="#webglShaderBuilder_appendHeaderIfNotExists"> <em>webglShaderBuilder</em>.<strong>appendHeaderIfNotExists</strong>(<em>header</em>)</p>
+<p>Appends <em>header</em> to the end of the current headers as long as it does not already exist.</p>
+<p><em>header</em> must be a string containing GLSL code.</p>
+<p><a name="webglShaderBuilder_appendBody" href="#webglShaderBuilder_appendBody">#</a> <em>webglShaderBuilder</em>.<strong>appendBody</strong>(<em>body</em>)</p>
+<p>Appends <em>body</em> to the end of the current bodies.</p>
+<p><em>body</em> must be a string containing GLSL code.</p>
+<p><a name="webglShaderBuilder_insertBody" href="#webglShaderBuilder_insertBody">#</a> <em>webglShaderBuilder</em>.<strong>insertBody</strong>(<em>body</em>, <em>before</em>)</p>
+<p>Inserts <em>body</em> before the line provided in the <em>before</em> argument.</p>
+<p><em>body</em> must be a string containing GLSL code.<br><em>before</em> must be a string containing GLSL code already in the current bodies. If <em>before</em> does not match any existing bodies then <em>body</em> will be appended to the end of the current bodies.</p>
+<p><a name="webglShaderBuilder_appendBodyIfNotExists" href="#webglShaderBuilder_appendBodyIfNotExists"> <em>webglShaderBuilder</em>.<strong>appendBodyIfNotExists</strong>(<em>body</em>)</p>
+<p>Appends <em>body</em> to the end of the current bodies as long as it does not already exist.</p>
+<p><em>body</em> must be a string containing GLSL code.</p>
+<h4 id="shader-naming-convention">Shader Naming Convention</h4>
+<p>The naming convention for shader inputs follows the convention found on the <a href="https://d3fc.io/api/series-api.html">series-api page</a> in the web docs.</p>
+<p>One key difference is that shader inputs should be written in camelCase and have a qualifier prefix.</p>
+<p>Shader inputs can have one of three qualifiers. Each qualifier has a corresponding prefix.</p>
+<table>
+<thead>
+<tr>
+<th>Qualifier</th>
+<th>Prefix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Attribute</td>
+<td>a</td>
+</tr>
+<tr>
+<td>Uniform</td>
+<td>u</td>
+</tr>
+<tr>
+<td>Varying</td>
+<td>v</td>
+</tr>
+</tbody></table>
+<p>For example: <code>aCrossValue</code></p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="program-builder" href="#program-builder" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Program Builder
+                </h3>
+<p><a name="webglProgramBuilder" href="#webglProgramBuilder">#</a> fc.<strong>webglProgramBuilder</strong>()</p>
+<p>This component manages the creation and execution of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLProgram">WebGLProgram</a>. No underlying WebGL methods are invoked until the program builder itself is invoked.</p>
+<p><a name="webglProgramBuilder_context" href="#webglProgramBuilder_context">#</a> <em>webglProgramBuilder</em>.<strong>context</strong>(<em>context</em>)</p>
+<p>If <em>context</em> is specified, sets the context and returns this builder. If <em>context</em> is not specified, returns the current context.</p>
+<p><em>context</em> must be an instance of <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext">WebGLRenderingContext</a> from the canvas to be drawn to.</p>
+<p><a name="webglProgramBuilder_buffers" href="#webglProgramBuilder_buffers">#</a> <em>webglProgramBuilder</em>.<strong>buffers</strong>(<em>bufferBuilder</em>)</p>
+<p>If <em>bufferBuilder</em> is specified, sets the buffers and returns this builder. If <em>bufferBuilder</em> is not specified, returns the current buffers.</p>
+<p><em>bufferBuilder</em> must be an instance of <a href="#buffer-builder"><code>webglBufferBuilder</code></a></p>
+<p><a name="webglProgramBuilder_vertexShader" href="#webglProgramBuilder_vertexShader">#</a> <em>webglProgramBuilder</em>.<strong>vertexShader</strong>(<em>shaderBuilder</em>)</p>
+<p>If <em>shaderBuilder</em> is specified, sets the vertex shader and returns this builder. If <em>shaderBuilder</em> is not specified, returns the current vertex shader.</p>
+<p><em>shaderBuilder</em> must be an instance of <a href="#shader-builder"><code>webglShaderBuilder</code></a></p>
+<p><a name="webglProgramBuilder_fragmentShader" href="#webglProgramBuilder_fragmentShader">#</a> <em>webglProgramBuilder</em>.<strong>fragmentShader</strong>(<em>shaderBuilder</em>)</p>
+<p>If <em>shaderBuilder</em> is specified, sets the fragment shader and returns this builder. If <em>shaderBuilder</em> is not specified, returns the current fragment shader.</p>
+<p><em>shaderBuilder</em> must be an instance of <a href="#shader-builder"><code>webglShaderBuilder</code></a></p>
+<p><a name="webglProgramBuilder_mode" href="#webglProgramBuilder_mode">#</a> <em>webglProgramBuilder</em>.<strong>mode</strong>(<em>mode</em>)</p>
+<p>If <em>mode</em> is specified, sets the mode and returns this builder. If <em>mode</em> is not specified, returns the current mode.</p>
+<p><em>mode</em> must be a WebGL draw mode, modes supported by <code>webglProgramBuilder</code> are <code>WebGLRenderingContext.POINTS</code> and <code>WebGLRenderingContext.TRIANGLES</code>.</p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="symbol-mapper" href="#symbol-mapper" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Symbol Mapper
+                </h3>
+<p><a name="webglSymbolMapper" href="#webglSymbolMapper">#</a> fc.<strong>webglSymbolMapper</strong>(<em>symbol</em>)</p>
+<p>Used to map a <a href="https://github.com/d3/d3-shape#symbols">D3 symbol</a> (<em>symbol</em>) to a shader used for drawing the equivalent symbol.</p>
+<p>Supported symbols:</p>
+<ul>
+<li>Circle</li>
+<li>Square</li>
+<li>Triangle</li>
+<li>Cross</li>
+</ul>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="fill-color" href="#fill-color" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Fill Color
+                </h3>
+<p><a name="webglFillColor" href="#webglFillColor">#</a> fc.<strong>webglFillColor</strong>(<em>color</em>)</p>
+<p>Used to set a fill color for the elements being drawn. If <em>color</em> is specified, it is used as the initial <a href="#webglFillColor_value">value</a>.</p>
+<p>Please note that there is currently no functional difference between <code>webglFillColor</code> and <code>webglStrokeColor</code>, this issue can be tracked <a href="https://github.com/d3fc/d3fc/issues/1427">here</a>.</p>
+<p><a name="webglFillColor_value" href="#webglFillColor_value">#</a> <em>webglFillColor</em>.<strong>value</strong>(<em>value</em>)</p>
+<p>If <em>value</em> is specified, sets value and returns this component. If <em>value</em> is not specified, returns the current value.</p>
+<p>Colors are specified as arrays containing four values representing <code>rgba</code> values given in the range <code>0</code> to <code>1</code> e.g. <code>[1, 1, 0, 1]</code> for yellow.</p>
+<p>The <em>value</em> can either be an array representing a constant value or a function which returns a colour for every datum in <a href="#webglFillColor_data">data</a>.</p>
+<p><a name="webglFillColor_data" href="#webglFillColor_data">#</a> <em>webglFillColor</em>.<strong>data</strong>(<em>data</em>)</p>
+<p>If <em>data</em> is specified, sets the data and returns this component. If <em>data</em> is not specified, returns the current data.</p>
+<p>The data property is used to allow the value function to run for each entry in the data set.</p>
+              </div>
+              <div class="block">
+                <h3 class="header">
+                  <a id="stroke-color" href="#stroke-color" class="header-link">
+                    <svg viewBox="0 0 16 16">
+                      <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                    </svg>
+                  </a>
+Stroke Color
+                </h3>
+<p><a name="webglStrokeColor" href="#webglStrokeColor">#</a> fc.<strong>webglStrokeColor</strong>(<em>color</em>)</p>
+<p>Used to set a stroke color for the elements being drawn. If <em>color</em> is specified, it is used as the initial <a href="#webglStrokeColor_value">value</a>.</p>
+<p>Please note that there is currently no functional difference between <code>webgStrokelColor</code> and <code>webglStrokeColor</code>, this issue can be tracked <a href="https://github.com/d3fc/d3fc/issues/1427">here</a>.</p>
+<p><a name="webglStrokeColor_value" href="#webglStrokeColor_value">#</a> <em>webglStrokeColor</em>.<strong>value</strong>(<em>value</em>)</p>
+<p>If <em>value</em> is specified, sets value and returns this component. If <em>value</em> is not specified, returns the current value.</p>
+<p>Colors are specified as arrays containing four values representing <code>rgba</code> values given in the range <code>0</code> to <code>1</code> e.g. <code>[1, 1, 0, 1]</code> for yellow.</p>
+<p>The <em>value</em> can either be an array representing a constant value or a function which returns a colour for every datum in <a href="#webglStrokeColor_data">data</a>.</p>
+<p><a name="webglStrokeColor_data" href="#webglStrokeColor_data">#</a> <em>webglStrokeColor</em>.<strong>data</strong>(<em>data</em>)</p>
+<p>If <em>data</em> is specified, sets the data and returns this component. If <em>data</em> is not specified, returns the current data.</p>
+<p>The data property is used to allow the value function to run for each entry in the data set.</p>
+              </div>
+            <!-- /LEVEL 3 -->
+          </div>
+        <!-- /LEVEL 2 -->
+      </div>
+    <!-- /LEVEL 1 -->
+
+    <p class="edit-page-block">Found a problem in this page? <a href="https://github.com/d3fc/d3fc/blob/master/packages/d3fc-webgl/README.md" target+"_blank">Submit a fix!</a></p>
+  </div>
+
+  <nav class="col-sm-3 hidden-xs nav-container">
+    <ul class="nav nav-stacked fixed nav-sidebar">
+        <li>
+            <a href="/api/annotation-api.html">Annotation</a>
+        </li>
+        <li>
+            <a href="/api/axis-api.html">Axis</a>
+        </li>
+        <li>
+            <a href="/api/brush-api.html">Brush</a>
+        </li>
+        <li>
+            <a href="/api/chart-api.html">Chart</a>
+        </li>
+        <li>
+            <a href="/api/data-join-api.html">Data Join</a>
+        </li>
+        <li>
+            <a href="/api/discontinuous-scale-api.html">Discontinuous Scale</a>
+        </li>
+        <li>
+            <a href="/api/element-api.html">Element</a>
+        </li>
+        <li>
+            <a href="/api/extent-api.html">Extent</a>
+        </li>
+        <li>
+            <a href="/api/financial-feed-api.html">Financial Feed</a>
+        </li>
+        <li>
+            <a href="/api/group-api.html">Group</a>
+        </li>
+        <li>
+            <a href="/api/label-layout-api.html">Label Layout</a>
+        </li>
+        <li>
+            <a href="/api/pointer-api.html">Pointer</a>
+        </li>
+        <li>
+            <a href="/api/random-data-api.html">Random Data</a>
+        </li>
+        <li>
+            <a href="/api/rebind-api.html">Rebind</a>
+        </li>
+        <li>
+            <a href="/api/sample-api.html">Sample</a>
+        </li>
+        <li>
+            <a href="/api/series-api.html">Series</a>
+        </li>
+        <li>
+            <a href="/api/shape-api.html">Shape</a>
+        </li>
+        <li>
+            <a href="/api/technical-indicator-api.html">Technical Indicator</a>
+        </li>
+        <li>
+            <span class="active">Webgl</span>
+            <ul class="nav nav-stacked">
+                <li>
+                  <a href="#series">
+                    Series
+                  </a>
+                </li>
+                <li>
+                  <a href="#buffers">
+                    Buffers
+                  </a>
+                </li>
+                <li>
+                  <a href="#scales">
+                    Scales
+                  </a>
+                </li>
+                <li>
+                  <a href="#shader-builder">
+                    Shader Builder
+                  </a>
+                </li>
+                <li>
+                  <a href="#program-builder">
+                    Program Builder
+                  </a>
+                </li>
+                <li>
+                  <a href="#symbol-mapper">
+                    Symbol Mapper
+                  </a>
+                </li>
+                <li>
+                  <a href="#fill-color">
+                    Fill Color
+                  </a>
+                </li>
+                <li>
+                  <a href="#stroke-color">
+                    Stroke Color
+                  </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+  </nav>
+</div>
+
+
+    </div>
+    <footer>
+      <div class="container">
+        <p class="muted credit text-center">Project supported by <a href="http://www.scottlogic.com">Scott Logic</a>.</p>
+      </div>
+    </footer>
+  </body>
+</html>
